@@ -1,0 +1,12 @@
+---
+  - name: Transfer the content script
+    copy: src=content_test.sh dest=/home/vagrant mode=0777
+
+  - name: Execute the content script
+    script: /home/vagrant/content_test.sh
+
+  - name: Transfer the loadbalance script
+    copy: src=loadbalance_test.sh dest=/home/vagrant mode=0777
+
+  - name: Execute the loadbalancer script
+    script: /home/vagrant/loadbalance_test.sh

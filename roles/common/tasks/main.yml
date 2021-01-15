@@ -1,0 +1,26 @@
+---
+- name: give the admin group sudo privileges 
+  copy:
+    content: '%admin ALL=(ALL) NOPASSWD: ALL'
+    dest: /etc/sudoers.d/admin
+    owner: root
+    group: root
+    mode: 0440
+
+- name: give the vagrant user sudo privileges 
+  copy:
+    content: 'vagrant ALL=(ALL) NOPASSWD:ALL'
+    dest: /etc/sudoers.d/vagrant
+    owner: root
+    group: root
+    mode: 0440
+
+- name: add nginx repository
+  apt_repository: repo='ppa:nginx/stable' state=present
+  register: nginxrepo
+
+- name: install nginx
+  apt: pkg=nginx state=latest
+  when: nginxrepo is succeeded
+  notify:
+    - Restart Nginx

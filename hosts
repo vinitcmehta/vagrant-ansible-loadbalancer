@@ -1,0 +1,10 @@
+controller ansible_connection=local
+loadbalancer    ansible_host=172.17.177.21 ansbile_user=vagrant ansible_ssh_private_key_file=/vagrant/.vagrant/machines/loadbalancer/virtualbox/private_key
+webserver1      ansible_host=172.17.177.31 ansbile_user=vagrant ansible_ssh_private_key_file=/vagrant/.vagrant/machines/webserver1/virtualbox/private_key
+webserver2      ansible_host=172.17.177.32 ansbile_user=vagrant ansible_ssh_private_key_file=/vagrant/.vagrant/machines/webserver2/virtualbox/private_key
+
+[loadbalancers]
+loadbalancer
+
+[webservers]
+webserver[1:2]
